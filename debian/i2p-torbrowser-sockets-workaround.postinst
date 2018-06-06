@@ -1,0 +1,71 @@
+#!/bin/bash
+
+## Copyright (C) 2012 
+## See the file COPYING for copying conditions.
+
+if [ -f /usr/lib/pre.bsh ]; then
+   source /usr/lib/pre.bsh
+fi
+
+set -e
+
+true "
+#####################################################################
+## INFO: BEGIN: $DPKG_MAINTSCRIPT_PACKAGE $DPKG_MAINTSCRIPT_NAME $@
+#####################################################################
+"
+
+configure_function() {
+   adduser --quiet \
+           --system \
+           --disabled-password \
+           --home /var/lib/tor \
+           --no-create-home \
+           --shell /bin/false \
+           --group \
+           i2psvc >/dev/null 2>&1 || true
+
+   addgroup --quiet i2psvc 2>/dev/null || true
+
+   ## Add user "user" to the group "i2psvc", so user "user" can access i2p's control port.
+   ## User "user" already exists thanks to the anon-base-files package.
+   addgroup --quiet user i2psvc
+}
+
+case "$1" in
+   configure)
+      true "INFO: Configuring $DPKG_MAINTSCRIPT_PACKAGE..."
+
+      configure_function
+
+      true "INFO: End configuring $DPKG_MAINTSCRIPT_PACKAGE."
+
+      ;;
+
+   *)
+      ;;
+esac
+
+## workaround for 'dh_installinit should run systemd-tmpfiles if a
+## /usr/lib/tmpfiles.d/ snippet gets shipped for systemd-only packages
+## also' - http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=795519
+# In case this system is running systemd, we need to ensure that all
+# necessary tmpfiles (if any) are created before starting.
+if [ -d /run/systemd/system ] ; then
+	systemd-tmpfiles --create /usr/lib/tmpfiles.d/i2p-torbrowser-sockets-workaround.conf >/dev/null || true
+fi
+
+true "INFO: debhelper beginning here."
+
+#DEBHELPER#
+
+true "INFO: Done with debhelper."
+
+true "
+#####################################################################
+## INFO: END  : $DPKG_MAINTSCRIPT_PACKAGE $DPKG_MAINTSCRIPT_NAME $@
+#####################################################################
+"
+
+## Explicitly "exit 0", so eventually trapped errors can be ignored.
+exit 0

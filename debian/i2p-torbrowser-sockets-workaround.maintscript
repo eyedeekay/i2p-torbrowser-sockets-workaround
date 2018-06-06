@@ -1,0 +1,3 @@
+rm_conffile /etc/systemd/system/i2p.service.d/20_i2p_torbrowser_sockets_workaround.conf
+rm_conffile /etc/rinetd.conf.anondist
+rm_conffile /etc/init.d/i2p.anondist

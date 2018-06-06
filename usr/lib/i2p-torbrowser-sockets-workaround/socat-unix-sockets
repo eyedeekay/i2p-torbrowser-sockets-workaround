@@ -1,0 +1,35 @@
+#!/bin/bash
+
+## Copyright (C) 
+## See the file COPYING for copying conditions.
+
+set -e
+
+## Provides variable $GATEWAY_IP so it can be used by `source`d config snippets.
+eval $(/usr/lib/anon-shared-helper-scripts/settings_echo)
+
+shopt -s nullglob
+for i in /etc/i2p-torbrowser-sockets-workaround.d/*.conf /rw/i2p-torbrowser-sockets-workaround.d/*.conf; do
+   bash_n_exit_code="0"
+   bash_n_output="$(bash -n "$i" 2>&1)" || { bash_n_exit_code="$?" ; true; };
+   if [ ! "$bash_n_exit_code" = "0" ]; then
+      echo "Invalid config file: $i
+bash_n_exit_code: $bash_n_exit_code
+bash_n_output:
+$bash_n_output" >&2
+      exit 1
+   fi
+   source "$i"
+done
+
+## '|| true' in case no child process is run.
+pid_list="$(pgrep -P "$$")" || true
+
+if [ "$pid_list" = "" ]; then
+   echo "INFO: No processes launched into background, ok."
+   exit 125
+fi
+
+## Relying on systemd KillMode=control-group to kill the child processes as
+## well as this script.
+wait $pid_list

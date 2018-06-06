@@ -1,0 +1,6 @@
+## Copyright (C) 2012 
+## See the file COPYING for copying conditions.
+
+/etc/default/i2p.anondist
+/usr/bin/i2p.anondist
+/usr/sbin/i2p.anondist

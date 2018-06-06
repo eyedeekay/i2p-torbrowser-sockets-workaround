@@ -1,0 +1,26 @@
+## Copyright (C) 2012 
+## See the file COPYING for copying conditions.
+
+Source: i2p-torbrowser-sockets-workaround
+Section: misc
+Priority: optional
+Maintainer: idk <idk@futuremailbox.org>
+Build-Depends: debhelper (>= 9), genmkfile, config-package-dev, dh-systemd
+Homepage: https://github.com/eyedeekay/i2p-torbrowser-sockets-workaround
+Vcs-Browser: https://github.com/eyedeekay/i2p-torbrowser-sockets-workaround
+Vcs-Git: https://github.com/eyedeekay/i2p-torbrowser-sockets-workaround.git
+Standards-Version: 3.9.8
+
+Package: i2p-torbrowser-sockets-workaround
+Provides: i2p, ${diverted-files}
+Conflicts: ${diverted-files}
+Architecture: all
+## anon-base-files provides user 'user'.
+Depends: procps, socat, anon-shared-helper-scripts, anon-base-files, ${misc:Depends}
+Description: Enables i2p SOCKS socket support.
+ Supposed to be installed on Workstations, which configures forwarding of an i2p
+ SOCKS tunnel to a unix socket on the workstation.
+ .
+ It allows installation of packages, which depend on an i2p tunnel, such as
+ an i2p browser.
+ .

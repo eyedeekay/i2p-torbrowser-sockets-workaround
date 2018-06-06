@@ -1,0 +1,28 @@
+#!/bin/bash
+
+## Copyright (C) 
+## See the file COPYING for copying conditions.
+
+set -e
+
+mkdir --parents /var/run/i2p --mode=2755
+mkdir --parents /var/lib/i2p --mode=2700
+
+## system i2p default '/var/run/i2p/control.authcookie' auth cookie file
+cp /usr/share/i2p-torbrowser-sockets-workaround/control.authcookie /var/run/i2p/control.authcookie
+chmod 640 /var/run/i2p/control.authcookie
+
+## tor-firejail uses '/var/run/i2p/control_auth_cookie' auth cookie file
+## https://git.schwanenlied.me/yawning/tor-firejail/src/master/start-tor-browser
+## https://lists.torproject.org/pipermail/tor-dev/2016-July/011226.html
+## https://lists.torproject.org/pipermail/tor-dev/2016-July/011227.html
+cp /usr/share/i2p-torbrowser-sockets-workaround/control.authcookie /var/run/i2p/control_auth_cookie
+chmod 640 /var/run/i2p/control_auth_cookie
+
+## i2p by default uses '/var/lib/i2p/control_auth_cookie' auth cookie file
+## https://trac.torproject.org/projects/tor/ticket/19572
+cp /usr/share/i2p-torbrowser-sockets-workaround/control.authcookie /var/lib/i2p/control_auth_cookie
+chmod 640 /var/lib/i2p/control_auth_cookie
+
+chown --recursive i2psvc:i2psvc /var/run/i2p
+chown --recursive i2psvc:i2psvc /var/lib/i2p

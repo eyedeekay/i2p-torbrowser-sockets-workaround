@@ -1,0 +1,6 @@
+## Copyright (C) 2012 
+## See the file COPYING for copying conditions.
+
+## backwards compatibility with earlier package versions
+/etc/init.d/i2p.anondist
+/etc/rinetd.conf.anondist

@@ -1,0 +1,15 @@
+#!/usr/bin/make -f
+
+## Copyright (C) 2012 
+## See the file COPYING for copying conditions.
+
+#export DH_VERBOSE=1
+
+%:
+	dh $@ --with systemd
+
+override_dh_install:
+	dh_configpackage
+
+override_dh_installchangelogs:
+	dh_installchangelogs changelog.upstream upstream
