@@ -11,5 +11,5 @@ After=i2p-torbrowser-sockets-workaround_autogen_port_4447.socket
 Requires=i2p-torbrowser-sockets-workaround_autogen_port_4447.socket
 
 [Service]
-ExecStart=/lib/systemd/systemd-socket-proxyd 10.152.152.10:4447
+ExecStart=/lib/systemd/systemd-socket-proxyd 10.152.152.11:4447
 PrivateTmp=yes

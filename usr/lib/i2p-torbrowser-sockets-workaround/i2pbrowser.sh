@@ -20,11 +20,11 @@ export TOR_SKIP_LAUNCH=1
 ## Fortunately, this is not required for Whonix by default anymore,
 ## because systemd-socket-proxyd is configured to redirect
 ## Whonix-Workstation ports
-##   127.0.0.1:9050 to Whonix-Gateway 10.152.152.10:9050
-##   127.0.0.1:9051 to Whonix-Gateway 10.152.152.10:9051
-##   127.0.0.1:9150 to Whonix-Gateway 10.152.152.10:9150
-##   127.0.0.1:9151 to Whonix-Gateway 10.152.152.10:9151
-#export TOR_SOCKS_HOST="10.152.152.10"
+##   127.0.0.1:9050 to Whonix-Gateway 10.152.152.11:9050
+##   127.0.0.1:9051 to Whonix-Gateway 10.152.152.11:9051
+##   127.0.0.1:9150 to Whonix-Gateway 10.152.152.11:9150
+##   127.0.0.1:9151 to Whonix-Gateway 10.152.152.11:9151
+#export TOR_SOCKS_HOST="10.152.152.11"
 #export TOR_SOCKS_PORT="9150"
 #export TOR_CONTROL_HOST="127.0.0.1"
 #export TOR_CONTROL_PORT="9151"

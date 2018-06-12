@@ -61,7 +61,7 @@ for item in $file_port_tuples ; do
    source_port="${port_tuples%:*}"
    destination_port="${port_tuples##*:}"
 
-   destination_where="10.152.152.10:${destination_port}"
+   destination_where="10.152.152.11:${destination_port}"
 
    if [ "$file_item" = "port" ]; then
       listen_where="127.0.0.1:$source_port"
