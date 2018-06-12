@@ -1,0 +1,25 @@
+## Copyright (C)
+## See the file COPYING for copying conditions.
+
+[Unit]
+Description=i2p-torbrowser-sockets-workaround
+Documentation=https://github.com/eyedeekay/i2p-torbrowser-sockets-workaround
+ConditionPathExists=!/var/run/qubes/this-is-templatevm
+
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+Restart=always
+TimeoutSec=30
+KillMode=control-group
+SuccessExitStatus=143 125
+RestartPreventExitStatus=125
+PermissionsStartOnly=true
+ExecStartPre=/usr/lib/i2p-torbrowser-sockets-workaround/state-files
+User=i2psvc
+ExecStart=/usr/lib/i2p-torbrowser-sockets-workaround/socat-unix-sockets
+
+[Install]
+WantedBy=multi-user.target
