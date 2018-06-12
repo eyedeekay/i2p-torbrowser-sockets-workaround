@@ -9,6 +9,9 @@ i2p-torbrowser-sockets-workaround: binary-without-manpage usr/sbin/i2p.anondist
 ## false positive lintian warning for static systemd unit file
 ## http://lists.alioth.debian.org/pipermail/pkg-systemd-maintainers/2017-March/014380.html
 ## https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=832771#32
+i2p-torbrowser-sockets-workaround: systemd-service-file-missing-install-key lib/systemd/system/i2p-torbrowser-sockets-workaround_autogen_port_4444.service
 i2p-torbrowser-sockets-workaround: systemd-service-file-missing-install-key lib/systemd/system/i2p-torbrowser-sockets-workaround_autogen_port_4447.service
+i2p-torbrowser-sockets-workaround: systemd-service-file-missing-install-key lib/systemd/system/i2p-torbrowser-sockets-workaround_autogen__var_run_i2p-torbrowser-sockets-workaround_127.0.0.1_4444.sock.service
 i2p-torbrowser-sockets-workaround: systemd-service-file-missing-install-key lib/systemd/system/i2p-torbrowser-sockets-workaround_autogen__var_run_i2p-torbrowser-sockets-workaround_127.0.0.1_4447.sock.service
+i2p-torbrowser-sockets-workaround: systemd-service-file-missing-install-key lib/systemd/system/i2p-torbrowser-sockets-workaround_autogen__var_run_i2p_http.service
 i2p-torbrowser-sockets-workaround: systemd-service-file-missing-install-key lib/systemd/system/i2p-torbrowser-sockets-workaround_autogen__var_run_i2p_socks.service
